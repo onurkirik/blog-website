@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="d-flex justify-content-between my-1 align-items-center">
+        <span class="fs-2">
+            {{isUpdate ? 'Yazıyı Güncelle' : 'Yazı'}}
+        </span>
+        <button class="fs-2" (click)="closeDialog()" mat-raised-button color="warn">X</button>
+    </div>
+    <mat-divider></mat-divider>
+</div>
+
+<div class="container scrollable-container" *ngIf="!isUpdate">
+    <div class="row my-3">
+        <div class="col-md-6">
+            <img class="w-100" src="assets/images/image{{imageId}}.jpg" />
+        </div>
+        <div class="col-6">
+            <h2>{{title}}</h2>
+            <p>{{body}}</p>
+        </div>
+    </div>
+    <mat-card *ngFor="let comment of commentDatas" class="my-2 shadow">
+        <mat-card-header class="py-2">
+            <mat-card-title-group class="align-items-center">
+                <mat-card-title>{{comment.name}}</mat-card-title>
+                <mat-card-subtitle>{{comment.body}}</mat-card-subtitle>
+                <img style="border-radius: 50%;" mat-card-sm-image
+                    src="assets/images/profile/profile{{comment.userId}}.jpg">
+            </mat-card-title-group>
+        </mat-card-header>
+    </mat-card>
+</div>
+
+<div *ngIf="isUpdate">
+
+</div>
