@@ -22,10 +22,7 @@ export class HomeComponent {
   ) { }
 
   ngOnInit(): void {
-    this._postService.getPosts().subscribe((res) => {
-      console.log(res);
-      this.blogData = res;
-    });
+    this.getPost();
   }
 
   //PUBLICS
@@ -33,6 +30,18 @@ export class HomeComponent {
     const dialog = this._dialog.open(BlogDialogComponent, {
       data: { blog: element, isUpdate: viewOrUpdate }
     })
+
+    dialog.afterClosed().subscribe(result => {
+      this.getPost();
+    });
+
+  }
+
+  public getPost() {
+    this._postService.getPosts().subscribe((res) => {
+      console.log(res);
+      this.blogData = res;
+    });
   }
 
 }
